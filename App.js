@@ -23,7 +23,7 @@ export default class App extends React.Component {
   }
 
   renderList = (list) => {
-    return <TodoList list={list} />;
+    return <TodoList list={list} updateList={this.updateList} />;
   };
 
 
@@ -31,8 +31,12 @@ export default class App extends React.Component {
     this.setState({ lists: [...this.state.lists,{...list, id: this.state.lists.length + 1, todos: [] }] });
   };
 
-  update = list =>{
-
+  updateList = list =>{
+    this.setState({
+      lists: this.state.lists.map(item => {
+        return item.id === list.id ? list : item
+      })
+    })
   }
 
   render() {
@@ -73,6 +77,7 @@ export default class App extends React.Component {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => this.renderList(item)}
+            keyboardShouldPersistTaps= "always"
           />
         </View>
       </View>

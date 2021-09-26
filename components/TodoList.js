@@ -5,7 +5,7 @@ import TodoModal from "./TodoModal";
 
 export default class TodoList extends React.Component {
   state = {
-    showListVisible: false,
+    showListVisible : false,
   };
   toggleListModal() {
     this.setState({ showListVisible: !this.state.showListVisible });
@@ -25,6 +25,8 @@ export default class TodoList extends React.Component {
         >
           <TodoModal list={list} closeModal= {() => this.toggleListModal()} updateList={this.props.updateList} />
         </Modal>
+
+        
         <TouchableOpacity
           style={[styles.listContainer, { backgroundColor: list.color }]} onPress ={() => this.toggleListModal()}
         >
